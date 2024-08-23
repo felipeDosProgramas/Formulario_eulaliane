@@ -1,0 +1,194 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center; /* Centraliza verticalmente na viewport */
+}
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.header img {
+    width: 200px;
+    height: auto;
+    margin-top: 110px;
+}
+.header h2 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+}
+.header h3 {
+    font-size: 21px;
+    font-weight: normal;
+    color: #333;
+}
+.container {
+    display: flex;
+    align-items: flex-start; /* Alinha o conteúdo do container ao topo */
+    gap: 30px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1200px;
+}
+.form-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.institution-logo {
+    width: 200px;
+    margin: 0 auto 10px auto;
+    display: block;
+}
+h2, h3 {
+    color: #333;
+    margin: 16px 0;
+}
+h2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+h3 {
+    font-size: 21px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+h4 {
+    font-size: 22px;
+    font-weight: bold;
+}
+h5 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    margin: 0px 0 10px;
+}
+.field-group {
+    margin: 10px 0;
+    position: relative;
+}
+.field-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: normal;
+    color: #555;
+    font-size: 16px;
+}
+.field-group input, .field-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 13px;
+}
+.name-fields {
+    display: flex;
+    gap: 15px;
+}
+.name-fields .field-group {
+    flex: 1;
+    min-width: 120px;
+}
+.address-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.address-fields .field-group {
+    flex: 1;
+    min-width: 150px;
+}
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 15px 0;
+}
+.radio-option {
+    display: flex;
+    align-items: center;
+}
+.radio-option label {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+.divider {
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+button:hover {
+    background-color: #0056b3;
+}
+.input-with-icon {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.input-with-icon .icon {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+.input-with-icon input {
+    border: none;
+    padding-left: 10px;
+    width: 100%;
+    font-size: 16px;
+}
+.field-group .unidade-label, .field-group .periodo-label {
+    font-size: 18px;
+    font-weight: bold;
+}
+.data-preview-container {
+    flex: 1;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 345px;
+    max-height: 345px;
+    align-self: stretch; /* Faz o container de resumo ocupar o máximo de altura disponível */
+}
+.data-preview-container h2 {
+    color: #007bff;
+    font-size: 24px;
+    margin: 0 0 20px;
+}
+.data-preview-container .field {
+    margin-bottom: 10px;
+}
+.data-preview-container .field label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+}

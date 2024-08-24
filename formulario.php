@@ -1,8 +1,10 @@
 <?php
-    if (!isset($_COOKIE['login']) or $_COOKIE['login'] != 'logado')
+    require_once "php/logout_user.php";
+    if (!isset($_COOKIE['login']))
         header('location: ./index.php');
     $estados = require_once "php/enderecos.php";
     $imprimeCampo = require_once "php/resumo_formulario.php";
+    require_once "php/valor_salvo_no_cookie_ou_sessao.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -18,6 +20,10 @@
     <img src="https://lh5.googleusercontent.com/proxy/TrpYbMJJub8TjnWFTFsK5l00n1II-4f9jupBMM70BB2ErY3ehQ1Y-323ZwYkI4Nf_15sniAuI1VTJS5kVkBvm8oragPu4s163QPUcBa7HpwZoCE" alt="Logo da Instituição">
     <h2>Inscrição</h2>
     <h3>Curso Superior em Desenvolvimento de Software Multiplataforma</h3>
+    <form action="#" method="post" style="width: 30vw; height: 5vh; position: absolute; top: 0;right: 0">
+        <span> <?= valor_salvo_no_cookie_ou_session("email") ?> </span>
+        <button type="submit" name="logout" style="width: 7.5vw">Sair</button>
+    </form>
 </div>
 <div class="container">
     <div class="form-container">

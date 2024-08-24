@@ -1,6 +1,5 @@
 /** @type {HTMLSelectElement} */
 const selectMunicipios = document.querySelector('select#cidade');
-/** @type {HTMLInputElement} */
 const cacheMuncipios = {}
 
 /**

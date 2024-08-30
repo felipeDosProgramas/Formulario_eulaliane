@@ -192,3 +192,11 @@ button:hover {
     font-weight: bold;
     color: #555;
 }
+.data-inscriptions-container {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    max-width: 345px;
+}

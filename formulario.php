@@ -2,9 +2,16 @@
     require_once "php/logout_user.php";
     if (!isset($_COOKIE['login']))
         header('location: ./index.php');
+    /** @var object[] $estados */
     $estados = require_once "php/enderecos.php";
-    $imprimeCampo = require_once "php/resumo_formulario.php";
+    require_once "php/resumo_formulario.php";
     require_once "php/valor_salvo_no_cookie_ou_sessao.php";
+    require_once "php/Cursos.php";
+    require_once "php/curso.php";
+    if (array_key_exists("curso", $_POST))
+        salvar_inscricao_em_arquivo(Cursos::tryFrom($_POST['curso']));
+    $inscricoes = buscar_inscricoes_feitas();
+    var_dump($inscricoes);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -13,6 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Inscrição</title>
     <link rel="stylesheet" href="css/formulario.css">
+    <link rel="stylesheet" href="css/cursos.css">
     <script src="js/apiMunicipios.js" defer></script>
 </head>
 <body>
@@ -28,8 +36,12 @@
 <div class="container">
     <div class="form-container">
         <div>
-            <h5>Dados Pessoais</h5>
             <form id="registration-form" method="post" action="#">
+                <h5>Selecione um curso</h5>
+                <section class="cursos">
+                    <?php imprimir_options(Cursos::cases()); ?>
+                </section>
+                <h5>Dados Pessoais</h5>
                 <div class="name-fields">
                     <div class="field-group">
                         <label for="primeiro-nome">Primeiro Nome</label>
@@ -102,47 +114,61 @@
             </form>
         </div>
     </div>
-    <div class="data-preview-container">
-        <h2>Resumo</h2>
-        <div class="field">
-            <label for="preview-nome">Nome</label>
-            <div id="preview-nome">
-                <?= $imprimeCampo("primeiro-nome")." ".$imprimeCampo("segundo-nome", "") ?>
+    <div class="data-inscriptions-container">
+        <div class="data-preview-container">
+            <h2>Resumo</h2>
+            <div class="field">
+                <label for="preview-nome">Nome</label>
+                <div id="preview-nome">
+                    <?= imprime_campo_se_contiver_no_POST("primeiro-nome", concatenarDepois: " ")
+                        .imprime_campo_se_contiver_no_POST("segundo-nome", "") ?>
+                </div>
             </div>
-        </div>
-        <div class="field">
-            <label for="preview-usuario">Usuário</label>
-            <div id="preview-usuario">
-                <?= $imprimeCampo("usuario") ?>
+            <div class="field">
+                <label for="preview-usuario">Usuário</label>
+                <div id="preview-usuario">
+                    <?= imprime_campo_se_contiver_no_POST("usuario") ?>
+                </div>
             </div>
-        </div>
-        <div class="field">
-            <label for="preview-email">E-mail</label>
-            <div id="preview-email">
-                <?= $imprimeCampo("email") ?>
+            <div class="field">
+                <label for="preview-email">E-mail</label>
+                <div id="preview-email">
+                    <?= imprime_campo_se_contiver_no_POST("email") ?>
+                </div>
             </div>
-        </div>
-        <div class="field">
-            <label for="preview-endereco">Endereço</label>
-            <div id="preview-endereco">
-                <?= $imprimeCampo("endereco", "-", ", ").
-                    $imprimeCampo("cidade", "",  ", ").
+            <div class="field">
+                <label for="preview-endereco">Endereço</label>
+                <div id="preview-endereco">
+                    <?= imprime_campo_se_contiver_no_POST("endereco", "-", ", ").
+                    imprime_campo_se_contiver_no_POST("cidade", "",  ", ").
                     get_nome_estado_pelo_codigo().
-                    $imprimeCampo("cep", "") ?>
+                    imprime_campo_se_contiver_no_POST("cep", "") ?>
+                </div>
+            </div>
+            <div class="field">
+                <label for="preview-unidade">Unidade</label>
+                <div id="preview-unidade">
+                    <?= imprime_campo_se_contiver_no_POST("unidade") ?>
+                </div>
+            </div>
+            <div class="field">
+                <label for="preview-periodo">Período</label>
+                <div id="preview-periodo">
+                    <?= imprime_campo_se_contiver_no_POST("periodo") ?>
+                </div>
             </div>
         </div>
-        <div class="field">
-            <label for="preview-unidade">Unidade</label>
-            <div id="preview-unidade">
-                <?= $imprimeCampo("unidade") ?>
+        <?php if(count($inscricoes) != 0){?>
+            <div class="data-preview-container" style="margin-top: 2vh;">
+                <h2>inscrições</h2>
+                <?php foreach ($inscricoes as $nome_curso => $inscricao){ ?>
+                <div class="field">
+                    <?= $nome_curso.": ".$inscricao ?>
+                    <br>
+                </div>
+                <?php } ?>
             </div>
-        </div>
-        <div class="field">
-            <label for="preview-periodo">Período</label>
-            <div id="preview-periodo">
-                <?= $imprimeCampo("periodo") ?>
-            </div>
-        </div>
+        <?php } ?>
     </div>
 </div>
 

@@ -16,6 +16,10 @@ async function getMunicipiosDoEstado(idEstado) {
     popularSelectDeMunicipios(nomesMunicipiosDoEstado);
 }
 
+/**
+ * @param {Array<{nome: string}>} dadosMunicipio
+ * @returns {string[]}
+ */
 function separarApenasNomesDosMunicipiosDoEstado(dadosMunicipio){
     const nomesMunicipiosDoEstado = []
     dadosMunicipio.forEach(
@@ -33,7 +37,10 @@ function criarOptionFn (value){
     opt.innerText = value;
     return opt;
 }
-/** @param {string[]} municipios */
+/**
+ * @param {string[]} municipios
+ * @returns void
+ */
 function popularSelectDeMunicipios(municipios) {
     selectMunicipios.innerText = '';
     municipios.forEach(

@@ -19,6 +19,11 @@
         salvar_cache_informacoes_estado($nome_arquivo_cache, $informacoes_estado);
         return json_decode($informacoes_estado);
     }
+
+    /**
+     * @param object[] $estados
+     * @return string
+     */
     function popular_select_de_estados(array $estados): string
     {
         return array_reduce($estados,
@@ -36,6 +41,7 @@
         return cache_informacoes_estados($_POST['estado'])
             ->nome.". CEP: ";
     }
+
     return json_decode(
         file_get_contents('resources/estados.json')
     );

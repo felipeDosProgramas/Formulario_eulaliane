@@ -4,7 +4,7 @@
         file_put_contents($nome_arquivo_cache, $informacoes_estado);
     }
 
-    function retornar_cache_informacoes_estado(string $nome_arquivo_cache)
+    function retornar_cache_informacoes_estado(string $nome_arquivo_cache): object
     {
         return json_decode(
             file_get_contents($nome_arquivo_cache)
@@ -27,10 +27,11 @@
     function popular_select_de_estados(array $estados): string
     {
         return array_reduce($estados,
-            function ($anterior, $atual) {
+            function (string $anterior, object $atual) {
                 $anterior .= "<option value='{$atual->id}'>{$atual->nome}</option>";
                 return $anterior;
-            }
+            },
+        ""
         );
     }
 
@@ -42,6 +43,12 @@
             ->nome.". CEP: ";
     }
 
-    return json_decode(
-        file_get_contents('resources/estados.json')
-    );
+    /**
+     * @return Object[]
+     */
+    function get_estados_salvos_no_arquivo(): array
+    {
+        return json_decode(
+            file_get_contents('resources/estados.json')
+        );
+    }

@@ -2,16 +2,12 @@
     require_once "php/logout_user.php";
     if (!isset($_COOKIE['login']))
         header('location: ./index.php');
-    /** @var object[] $estados */
-    $estados = require_once "php/enderecos.php";
-    require_once "php/resumo_formulario.php";
-    require_once "php/valor_salvo_no_cookie_ou_sessao.php";
-    require_once "php/Cursos.php";
-    require_once "php/curso.php";
-    if (array_key_exists("curso", $_POST))
-        salvar_inscricao_em_arquivo(Cursos::tryFrom($_POST['curso']));
+    $arquivos_para_importar = ["resumo_formulario.php", "valor_salvo_no_cookie_ou_sessao.php", "Cursos.php", "curso.php", "enderecos.php"];
+    foreach ($arquivos_para_importar as $arquivo)
+        require_once "php/{$arquivo}";
+    salvar_inscricao_em_arquivo();
     $inscricoes = buscar_inscricoes_feitas();
-    var_dump($inscricoes);
+    $estados = get_estados_salvos_no_arquivo();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -21,7 +17,7 @@
     <title>Formulário de Inscrição</title>
     <link rel="stylesheet" href="css/formulario.css">
     <link rel="stylesheet" href="css/cursos.css">
-    <script src="js/apiMunicipios.js" defer></script>
+    <script src="js/apiMunicipios.js" defer type="module"></script>
 </head>
 <body>
 <div class="header">
@@ -39,7 +35,7 @@
             <form id="registration-form" method="post" action="#">
                 <h5>Selecione um curso</h5>
                 <section class="cursos">
-                    <?php imprimir_options(Cursos::cases()); ?>
+                    <?php Cursos::imprimir_options(); ?>
                 </section>
                 <h5>Dados Pessoais</h5>
                 <div class="name-fields">
@@ -158,17 +154,17 @@
                 </div>
             </div>
         </div>
-        <?php if(count($inscricoes) != 0){?>
+        <?php if(count($inscricoes) != 0): ?>
             <div class="data-preview-container" style="margin-top: 2vh;">
                 <h2>inscrições</h2>
-                <?php foreach ($inscricoes as $nome_curso => $inscricao){ ?>
+                <?php foreach ($inscricoes as $nome_curso => $inscricao): ?>
                 <div class="field">
                     <?= $nome_curso.": ".$inscricao ?>
                     <br>
                 </div>
-                <?php } ?>
+                <?php endforeach; ?>
             </div>
-        <?php } ?>
+        <?php endif; ?>
     </div>
 </div>
 

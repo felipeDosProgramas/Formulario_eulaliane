@@ -21,9 +21,9 @@ async function getMunicipiosDoEstado(idEstado) {
  * @returns {string[]}
  */
 function separarApenasNomesDosMunicipiosDoEstado(dadosMunicipio){
-    const nomesMunicipiosDoEstado = []
+    const nomesMunicipiosDoEstado = [];
     dadosMunicipio.forEach(
-        (v) => nomesMunicipiosDoEstado.push(v.nome)
+        ({nome}) => nomesMunicipiosDoEstado.push(nome)
     );
     return nomesMunicipiosDoEstado;
 }

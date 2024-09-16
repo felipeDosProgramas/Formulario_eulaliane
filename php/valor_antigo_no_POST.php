@@ -9,7 +9,7 @@
  */
 function valor_antigo_no_POST(string $chave_do_valor_antigo_no_POST, bool $nullable = false): ?string
 {
-    if (array_key_exists($chave_do_valor_antigo_no_POST, $_POST))
-        return "value='{$_POST[$chave_do_valor_antigo_no_POST]}'";
-    return $nullable ? null : "";
+    return array_key_exists($chave_do_valor_antigo_no_POST, $_POST)
+        ? "value='{$_POST[$chave_do_valor_antigo_no_POST]}'"
+        : ($nullable ? null : "");
 }

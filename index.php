@@ -1,10 +1,6 @@
 <?php
-    declare(strict_types=1);
-    if (session_status() == PHP_SESSION_NONE)
-        session_start();
-    require_once "php/logar_usuario.php";
-    require_once "php/valor_antigo_no_POST.php";
-    require_once "php/valor_salvo_no_cookie_ou_sessao.php";
+    foreach (require_once "php/imports/index.php" as $import_name)
+        require_once "php/$import_name";
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Login</title>
+    <title>Login</title>
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
@@ -33,7 +29,13 @@
             <input type="checkbox" name="lembrar_de_mim" style="margin-left: -7.5vw; width: 10vw">
             <span>lembrar de mim</span>
         </label>
-        <button type="submit">Entrar</button>
+        <button type="submit" style="margin-bottom: 1vh; margin-top: 1vh;">Entrar</button>
+        <div style="border: 1px solid gray; padding: 1vh 1vw; box-shadow: #007bff 1px 1px 2px">
+            não tem uma conta? <a href="cadastro_usuario.php">Cadastre-se!</a>
+        </div>
+        <?php if (array_key_exists('status', $_SESSION)): ?>
+            <?= $_SESSION['status'] ?>
+        <?php endif; ?>
     </form>
 </main>
 </body>

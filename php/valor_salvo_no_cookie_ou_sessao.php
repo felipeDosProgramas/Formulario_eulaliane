@@ -34,11 +34,13 @@ function valor_salvo_na_session(string $chave): ?string
  * Verifica se determinada chave existe na sessão ou no cookie.
  * Do contrário retorna uma string vazia
  * @param string $chave
- * @return string
+ * @param bool $nullable
+ * @return ?string
  */
-function valor_salvo_no_cookie_ou_session(string $chave): string
+function valor_salvo_no_cookie_ou_session(string $chave, bool $nullable = false): ?string
 {
-    return valor_salvo_na_session($chave)
-        ?? valor_salvo_no_cookie($chave)
-        ?? "";
+    $value = valor_salvo_na_session($chave) ?? valor_salvo_no_cookie($chave) ?? false;
+    return is_bool($value)
+        ? ($nullable ? null : "")
+        : $value;
 }

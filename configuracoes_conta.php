@@ -1,33 +1,27 @@
 <?php
-    require_once "php/manipular_banco.php";
-    require_once "php/apenas_usuarios_autenticados.php";
-    require_once "php/valor_salvo_no_cookie_ou_sessao.php";
-    require_once "php/index/iniciar_sessao.php";
-    require_once "php/configuracoes_conta/deslogar.php";
-
-    $msg = null;
-    $pdo = get_pdo();
-    $tem_acao_no_POST = array_key_exists('acao', $_POST);
-    $id_usuario = valor_salvo_no_cookie_ou_session('id') ??
-        valor_salvo_no_cookie_ou_session('user_id') ??
-        header("location: index.php");
-    $_SESSION += (array) buscar_dados_usuario($pdo,
-        $id_usuario
-    );
+    foreach (require_once "php/imports/configuracoes_conta.php" as $import)
+        require_once $import;
+    /**
+     * @type ?string $msg
+     * @type PDO $pdo
+     * @type bool $tem_acao_no_POST
+     * @type ?string $id_usuario
+     */
+    [$msg, $pdo, $tem_acao_no_POST, $id_usuario] =
+        buscar_informacoes_request(
+            fn(): PDO => get_pdo(),
+            fn(): ?string => valor_salvo_no_cookie_ou_session('id') ??
+                valor_salvo_no_cookie_ou_session('user_id') ??
+                header("location: index.php")
+        );
+    $_SESSION += (array) buscar_dados_usuario($pdo, $id_usuario);
     if ($tem_acao_no_POST && $_POST['acao'] == 'Excluir') {
         excluir_usuario($pdo, $id_usuario);
         destruir_sessao();
     }
-    if ($tem_acao_no_POST && $_POST['acao'] == "Alterar_senha" && array_key_exists('senha_antiga', $_POST))
-        $msg = atualizar_senha($pdo, (object) [
-                "front" => (object) [
-                    "atual" => $_POST['senha_antiga'],
-                    "nova" => $_POST['nova_senha'],
-                    "confirmacao" => $_POST['conf_nova_senha'],
-                ],
-                "banco" => (object) [ "senha" => $_SESSION['senha'] ]
-        ], $id_usuario) ?? header("location: ./formulario.php");
-
+    atualizar_senha_caso_o_usuario_queira($pdo, $msg, $tem_acao_no_POST, $id_usuario,
+        fn(PDO &$pdo, object $senhas, int $user_id): ?string  => atualizar_senha($pdo, $senhas, $user_id)
+    );
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

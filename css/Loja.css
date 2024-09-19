@@ -1,6 +1,198 @@
-body{
+/*body{
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+}
+main {
+    display: flex;    
+    flex-wrap: wrap;
+    max-width: 100vw;    
+    flex-direction: row;
+    justify-content: space-around;    
+}
+section {    
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+    height: 50vh;
+    margin-top: 5vh;
+    border: 2px solid cadetblue;
+    box-shadow: rgb(100, 150, 30) 10px 5px 5px;    
+}
+.fotoProduto{
+    width: 10vw;
+    margin-left: 20%;
+}
+.parteCimaSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.desconto {
+    border-radius: 70%;
+    background-color: blue;
+    width: fit-content;    
+}
+.oferta {
+    width: fit-content;
+}*/
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7; /* Light gray background */
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100vw;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #fff; /* White background for main content */
+    border: 1px solid #ddd; /* Light gray border */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+    height: 50vh;
+    margin: 20px;
+    border: 2px solid #3498db; /* Blue border */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    border-radius: 10px;
+    background-color: #f9f9f9; /* Light gray background */
+}
+
+.fotoProduto {
+    width: 10vw;
+    margin-left: 20%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.parteCimaSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #f2f2f2; /* Light gray background */
+    border-bottom: 1px solid #ddd; /* Light gray border */
+}
+
+.desconto {
+    border-radius: 70%;
+    background-color: #e74c3c; /* Red background */
+    width: fit-content;
+    padding: 5px;
+    color: #fff;
+}
+
+.oferta {
+    width: fit-content;
+    padding: 5px;
+    background-color: #2ecc71; /* Green background */
+    border-radius: 10px;
+    color: #fff;
+}
+
+.nome {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333; /* Dark gray text */
+}
+
+.preco {
+    font-size: 16px;
+    color: #666; /* Medium gray text */
+}
+
+.precoAntigo {
+    font-size: 14px;
+    color: #999; /* Light gray text */
+    text-decoration: line-through;
+}
+
+.vendidos {
+    font-size: 14px;
+    color: #666; /* Medium gray text */
+}
+
+.avaliacao {
+    font-size: 14px;
+    color: #666; /* Medium gray text */
+}
+
+.categoria {
+    font-size: 14px;
+    color: #666; /* Medium gray text */
+    background-color: #f2f2f2; /* Light gray background */
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.nomePreco {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.nomePreco .nome {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333; /* Dark gray text */
+}
+
+.nomePreco .preco {
+    font-size: 16px;
+    color: #666; /* Medium gray text */
+}
+
+.avaliacao img {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+.avaliacao span {
+    font-size: 14px;
+    color: #666; /* Medium gray text */
+}
+
+/* Add some responsive design elements */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+    section {
+        width: 50vw;
+        height: 30vh;
+    }
+}
+
+/* Add some interactive elements */
+section:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Darker shadow */
+    transform: scale(1.05);
+}
+
+section:hover .fotoProduto {
+    transform: scale(1.1);
+}
+
+section:hover .nomePreco {
+    background-color: #f9f9f9; /* Light gray background */
+}
+
+section:hover .nomePreco .nome {
+    color: #2ecc71; /* Green text */
+}
+
+section:hover .nomePreco .preco {
+    color: #e74c3c; /* Red text */
 }

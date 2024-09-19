@@ -1,6 +1,8 @@
 <?php
     foreach (require_once "php/imports/index.php" as $import_name)
         require_once "php/$import_name";
+    if (array_key_exists('login', $_COOKIE))
+        header('location: formulario.php');
 ?>
 
 <!DOCTYPE html>

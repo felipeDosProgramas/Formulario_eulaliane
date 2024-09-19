@@ -24,11 +24,14 @@
     <img src="https://lh5.googleusercontent.com/proxy/TrpYbMJJub8TjnWFTFsK5l00n1II-4f9jupBMM70BB2ErY3ehQ1Y-323ZwYkI4Nf_15sniAuI1VTJS5kVkBvm8oragPu4s163QPUcBa7HpwZoCE" alt="Logo da Instituição">
     <h2>Inscrição</h2>
     <h3>Curso Superior em Desenvolvimento de Software Multiplataforma</h3>
-    <form action="#" method="post" style="width: 30vw; height: 5vh; position: absolute; top: 0;right: 0">
+    <form action="#" method="post" style="width: 35vw; height: 5vh; position: absolute; top: 0;right: 0">
         <span> <?= valor_salvo_no_cookie_ou_session("email") ?> </span>
         <a href="configuracoes_conta.php" title="Configurações">
             <img src="imgs/engine.svg" alt="Configurações"
                  style="width: 2vw;margin: 0;">
+        </a>
+        <a href="Loja.php" title="Loja">
+            <img src="imgs/loja.svg" alt="Loja" style="width: 2vw; margin: 0;">
         </a>
         <button type="submit" name="logout" style="width: 7.5vw">Sair</button>
     </form>

@@ -1,7 +1,6 @@
 <?php
     foreach (require_once "php/imports/Loja.php" as $import)
-        require_once $import;
-    $produtos = buscar_produtos();
+        require_once $import;    
 ?>
 
 <html lang="en">
@@ -25,9 +24,41 @@
             <button type="submit" name="logout" style="width: 7.5vw">Sair</button>
         </form>
     </nav>
-</header>
-<?php foreach($produtos as $produto): ?>
-
-<?php endforeach; ?>
+</header>    
+<main>
+    <?php foreach(buscar_produtos() as $produto): ?>
+        <section title="<?= $produto->title ?>">
+            <div class="parteCimaSection">
+                <div class="oferta">Oferta do dia</div>
+                <div class="desconto">50%</div>
+            </div>
+            <span class="categoria">
+                <?= $produto->category ?>
+            </span>
+            <img src="<?= $produto->image ?>" alt="<?= $produto->title ?>" class="fotoProduto">
+            <span class="precoAntigo">
+                <?= $produto->price * rand(1, 2) ?>
+            </span>            
+            <div class="nomePreco">                
+                <span class="nome">
+                    <?= $produto->title ?>
+                </span>
+                <span class="preco">
+                    <?= $produto->price ?>
+                </span>
+            </div>
+            <div class="vendidos">
+                Vendidos: <?= $produto->rating->count ?>
+            </div>
+            <div class="avaliacao"> 
+                <span><?= $produto->rating->rate ?></span>                
+                <?php for($x = 0;$x!=(int) $produto->rating->rate;$x++): ?>
+                    <img src="imgs/estrela.svg" width="15px">
+                <?php endfor; ?>
+                <img src="imgs/metade_estrela.svg" width="15px"> 
+            </div>
+        </section>
+    <?php endforeach; ?>
+</main>
 </body>
 </html>
